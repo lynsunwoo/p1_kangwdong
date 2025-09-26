@@ -119,8 +119,8 @@
     <section id="cont1" class="content">
       <h2>콘텐츠1</h2>
       <article>
-        <h3>VISION</h3>
-        <span>새로운 가치를 고객의 건강한 삶에 기여하는<br>라이프헬스케어 기업</span>
+        <h3 class="reveal">VISION</h3>
+        <span class="reveal">새로운 가치를 고객의 건강한 삶에 기여하는<br>라이프헬스케어 기업</span>
         <div class="vision">
           <div class="v i_01">
             <img src="./images/03.icon/aotom_w.png" title="아이콘1">
@@ -146,8 +146,8 @@
     <section id="cont2" class="content">
       <h2>콘텐츠2</h2>
       <article>
-        <h3>BRAND</h3>
-        <span>광동제약 브랜드</span>
+        <h3 class="reveal">BRAND</h3>
+        <span class="reveal">광동제약 브랜드</span>
         <div class="brand">
           <a href="https://www.kdlh.co.kr/default/brand/brand01_.php?sub=01" title="천묘단페이지로 바로가기">
             <p>광동 천묘단</p>
@@ -170,8 +170,8 @@
       <h2>콘텐츠3</h2>
       <img src="./images/01.image/main01.jpg" alt="콘텐츠3이미지">
       <article class="value">
-        <h3>VALUE</h3>
-        <span>신뢰와 전문성이 기준이 되는 라이프 헬스케어 기업</span>
+        <h3 class="reveal">VALUE</h3>
+        <span class="reveal">신뢰와 전문성이 기준이 되는 라이프 헬스케어 기업</span>
         <div class="v_01">
           <p>새로운가치</p>
           <img src="./images/03.icon/value1.png" alt="아이콘1">
@@ -187,8 +187,8 @@
     <section id="cont4" class="content">
       <h2>콘텐츠4</h2>
       <article>
-        <h3 id="h">AREA</h3>
-        <span id="sp">광동제약의 사업분야</span>
+        <h3 id="h"  class="reveal">AREA</h3>
+        <span id="sp"  class="reveal">광동제약의 사업분야</span>
         <div id="a_button">
         <a href="https://www.kdlh.co.kr/default/company/company03.php?sub=03" title="사업분야 바로가기">사업분야 바로가기<i class="fa-solid fa-arrow-up-right-from-square"></i></a>
       </div>
@@ -222,8 +222,8 @@
       <h2>콘텐츠5</h2>
       <img src="./images/01.image/main02.jpg" alt="콘텐츠5이미지">
       <article>
-        <h3>CAREER</h3>
-        <span>미래를 함께 만들어갈 인재를 모십니다.</span>
+        <h3 class="reveal">CAREER</h3>
+        <span class="reveal">미래를 함께 만들어갈 인재를 모십니다.</span>
         <a href="https://kwangdong.recruiter.co.kr/appsite/company/index" title="채용정보">
         <div class="circle">
           <div id="career01"><p>인재상</p></div>
@@ -443,7 +443,22 @@
     });
   });
 });
-  
+//섹션 스크롤시 문자가 서서히 위로 올라옴
+const reveals = document.querySelectorAll('section article .reveal');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('active');
+    } else {
+      entry.target.classList.remove('active'); 
+      // 이 줄을 빼면, 한 번 나타난 후에는 다시 안 사라짐 (1회 애니메이션)
+    }
+  });
+}, { threshold: 0.3 }); // 30% 보이면 발동
+
+reveals.forEach(el => observer.observe(el));
+
   </script>
 </body>
 </html>

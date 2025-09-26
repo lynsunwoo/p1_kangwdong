@@ -4,6 +4,25 @@
 html {
   scroll-behavior: smooth;
 }
+/* 스크롤시 문자가 부드럽게 나옴 */
+.reveal{
+  opacity:0;
+  transform:translateY(100px);
+  transition:all 0.8s ease;
+}
+.reveal.active{
+  opacity:1;
+  transform:translateY(0);
+}
+/* h3 먼저 */
+article h3.reveal.active {
+  transition-delay: 0s;
+}
+/* span 나중 (0.3초 늦게 실행) */
+article span.reveal.active {
+  transition-delay: 0.3s;
+}
+
 /*메인 슬라이드 서식*/
 .main_visual{
   position: relative;
@@ -92,7 +111,7 @@ html {
 }
 /*콘텐츠 1*/
 .vision {
-  margin-top:100px;
+  margin-top:300px;
   position:relative;
   width:1200px;
   height:320px;
@@ -333,12 +352,12 @@ html {
   background-image: linear-gradient(to top, rgba(236, 54, 17,0.7) 0%, #fff 100%);
   transition: transform 0.1s linear;
 }
-#h{
+/* #h{
   transform:translateY(200%);
 }
 #sp{
   transform:translateY(100%);
-}
+} */
 
 /*이미지 카드 서식*/
 .wrap > div{
