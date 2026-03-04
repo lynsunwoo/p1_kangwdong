@@ -1,0 +1,550 @@
+@charset "utf-8";
+
+/*top버튼시 부드럽게 올라가기*/
+html {
+  scroll-behavior: smooth;
+}
+/* 스크롤시 문자가 부드럽게 나옴 */
+.reveal{
+  opacity:0;
+  transform:translateY(100px);
+  transition:all 0.8s ease;
+}
+.reveal.active{
+  opacity:1;
+  transform:translateY(0);
+}
+/* h3 먼저 */
+article h3.reveal.active {
+  transition-delay: 0s;
+}
+/* span 나중 (0.3초 늦게 실행) */
+article span.reveal.active {
+  transition-delay: 0.3s;
+}
+
+/*메인 슬라이드 서식*/
+.main_visual{
+  position: relative;
+  width:100%;
+  height:800px;
+  overflow:hidden;
+}
+.main_visual .swiper{
+  width:100%;
+  height:100%;
+}
+.main_visual > h2{
+  display:none;
+}
+.swiper-slide{
+  position:relative;
+}
+.main_visual img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.main_visual .text{
+  position: absolute;
+  top:40%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  color:#fff;
+  font-size:50px;
+  text-align:center;
+  line-height:80px;
+}
+.main_visual .text p{
+  font-size:20px;
+  line-height:30px;
+}
+/*좌우 슬라이드 버튼*/
+.swiper-button-next, .swiper-button-prev{
+  color:#fff;
+  width:50px;
+}
+.swiper-button-next:after, .swiper-button-prev:after{
+  font-size:80px;
+}
+/*슬라이드 버튼 서식*/
+.swiper-pagination-bullet{
+  width:15px;height:15px;
+  background-color:#fff;
+}
+.swiper-pagination-bullet-active{background-color:#EC3611;}
+
+/*메인 영역 서식*/
+.content{
+  height:800px;
+  /* background-color:#fda8a8; */
+  position:relative;
+}
+.content > article{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1400px;
+  height: 800px;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+}
+.content h3{
+  position:absolute;
+  top:120px;left: 0px;
+  display: block;
+  font-weight:800;
+  font-size:20px;
+  color:#EC3611;
+}
+.content span {
+  position: absolute;
+  top: 150px;/* h3 높이만큼 내려주기 */
+  left: 0;
+  color:#333;
+  font-size:35px;
+  font-weight: bold;
+  line-height:1.5;
+}
+/*콘텐츠 1*/
+.vision {
+  margin-top:300px;
+  position:relative;
+  width:1200px;
+  height:320px;
+  background-color:#EC3611;
+  border-radius:320px;
+  overflow:hidden;
+}
+.v {
+  position:absolute;
+  top:0;
+  width:400px;
+  height:320px;
+  border-radius:320px;
+  display:flex;
+  justify-content:flex-start; /*✅ 중앙 → 왼쪽 정렬 */
+  /* justify-content: space-between; */
+  padding-left:120px;
+  align-items:center;
+  transition:all 0.6s ease;
+  cursor:pointer;
+  z-index:1;
+  text-align:left;
+}
+
+.v img {
+  width:200px;
+  height:200px;
+  transition:all 0.6s ease;
+}
+
+/* 초기 위치 */
+.i_01 { left:0px;}
+.i_02 { left:400px; }
+.i_03 { left:800px; }
+
+/* hover된 박스 */
+.v.active {
+  left:0px;/* 무조건 i_01 자리로 이동 */
+  width:1200px;
+  height:320px;
+  background-size:cover;
+  background-position:center;
+  z-index:2;
+}
+/* 마우스 오버시 텍스트 나타남 */
+#txt01, #txt02, #txt03{
+  padding-left:340px;
+  font-size:30px;
+  color:#fff;
+  display:none;
+}
+#cont1 .v:hover > .txt{
+  display:block;
+  width:800px;height:50px;
+  padding-left:340px;
+  line-height:180%;
+}
+/* 다른 아이콘은 숨김 */
+.v.hide {
+  opacity:0;
+  pointer-events:none;
+}
+
+/*컨텐츠 2*/
+.brand {
+  display: flex;
+  gap: 30px;   /* 이미지 사이 간격 */
+  justify-content: space-between;
+}
+.brand > a{
+  width:407px;height:537px;
+  position:relative;
+  overflow: hidden;
+}
+#cont2 h3{
+  top:0px;
+}
+#cont2 span{
+  top:30px;
+}
+.brand > a> img{
+  width:100%; height:100%;
+  transition:0.5s;
+}
+.brand > a:hover img{
+  scale: 120%;
+}
+.brand > a > p{
+  position:absolute;
+  width:407px;height:100px;
+  display:block;
+  font-size:30px;
+  line-height:100px;
+  text-align:center;
+  background-color:rgba(0,0,0,0.5);
+  transition:0.5s ease;
+  z-index:20;
+  font-weight:bold;
+}
+.brand > a:hover p{
+  display:block;
+  text-align:center;
+  top:0;
+  height:100%;
+  line-height:537px;
+  background-color:rgba(0,0,0,0.8);
+  font-size:40px;
+}
+.brand > a:first-child:hover p::after{
+  content:"Kawngdong Chim Hyang Hwan";
+  font-size:16px;
+  color: #fff;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  line-height:600px;
+}
+.brand > a:nth-child(2):hover p::after{
+  content:"Vita500";
+  font-size:16px;
+  color: #fff;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  line-height:600px;
+}
+.brand > a:last-child:hover p::after{
+  content:"Culturelle Probiotics";
+  font-size:16px;
+  color: #fff;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  line-height:600px;
+}
+
+/*컨텐츠 3*/
+/*메인 이미지*/
+#cont3 > img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+#cont3 .value > span{
+  color:#fff;
+  top:190px;
+}
+#cont3 .value > h3{
+  color:#EC3611;
+  top:150px;
+}
+.value{
+  gap:200px;
+  padding-top:100px;
+}
+
+/*이미지 박스 서식*/
+.v_01, .v_02{
+  position: relative;
+  display: inline-block;
+  width:447px; height:437px;
+  transition:3s;
+}
+
+/*이미지위 텍스트 서식*/
+.v_01 p, .v_02 p{
+  position:absolute;
+  top:70%;left:50%;
+  transform:translate(-50%,-50%);
+  color:#fff;
+  font-size:30px;
+  z-index: 100;
+}
+/*v_01, v_02 마우스 오버시*/
+.v_01 img, .v_02 img, .v_01, .v_02, .v_01 > p, .v_02 > p{transition:0.5s}
+.v_01:hover{
+  background-image:url(../images/03.icon/value_w.png);
+}
+.v_01:hover img{
+  /* display:none;*/
+  opacity: 0;
+}
+.v_01:hover p{
+  /* display:none; */
+  opacity: 0;
+}
+.v_02:hover{
+  background-image:url(../images/03.icon/value_w.png);
+}
+.v_02:hover img{
+  /* display:none;/ */
+  opacity: 0;
+}
+.v_02:hover p{
+  /* display:none; */
+  opacity: 0;
+}
+.v_01:hover::after {
+  content: "새로운 경험이나 편익\A새로운 의미로\A차별화된 가치를 총괄적으로 지칭";
+  white-space: pre-line;
+  text-align: center;
+  line-height: 2.0;
+  position: absolute;
+  top: 55%; left: 50%;
+  transform: translate(-50%, -50%);
+  color:#EC3611;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.v_02:hover::after {
+  width:250px;
+  content: "육체적 건강과 정신적 안정이\A조화로운 상태로\A긍정적 에너지가 충만한 삶";
+  white-space: pre-line;
+  text-align: center;
+  line-height: 3.0;
+  position: absolute;
+  top: 55%; left: 50%;
+  transform: translate(-50%, -50%);
+  color:#EC3611;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/*컨텐츠 4*/
+#cont4 {
+  position: relative;
+  height: 800px;
+  overflow: hidden; /* 섹션 안에서만 스크롤 */
+}
+#w {
+  position: absolute;
+  top:0;
+  left: 50%;                    /* 가로 가운데 정렬 */
+  transform: translate(-30%,0%); /* 가운데 배치 (X축만 이동) */
+  width: 600px;
+  height: 880px;
+  background-image: linear-gradient(to top, rgba(236, 54, 17,0.7) 0%, #fff 100%);
+  transition: transform 0.1s linear;
+}
+/* #h{
+  transform:translateY(200%);
+}
+#sp{
+  transform:translateY(100%);
+} */
+
+/*이미지 카드 서식*/
+.wrap > div{
+  position: relative;
+  display:flex;
+  width:330px;height:330px;
+  background-color:#fff;
+}
+
+/*이미지 서식*/
+.wrap > div > img{
+  position: absolute;
+  display: block;
+  width:100%; height:80%;
+}
+.a_01{
+  position: absolute;
+  transform:translate(-20%,0%);
+}
+.a_02{
+  position: absolute;
+  transform:translate(110%,-80%);
+}
+.a_03{
+  position: absolute;
+  transform:translate(-20%,-80%);
+}
+.a_04{
+  position: absolute;
+  transform:translate(110%,-160%);
+}
+
+/*이미지 카드안에 텍스트서식*/
+.wrap h3{
+  position: absolute;
+  transform:translate(10px,235px);
+}
+.wrap p{
+  position: absolute;
+  line-height:18px;
+  transform:translate(10px,290px);
+}
+#w h3{
+  color:#333;
+  font-weight:600;
+  top:30px;
+}
+#w p{
+  color: #333;
+  font-weight:bold;
+  font-size:13px;
+}
+
+/*사업분야 바로가기 서식*/
+#a_button > a{
+  position:absolute;
+  left:0px; top:300px;
+  width:160px;height:45px;
+  background-color: #EC3611;
+  border-radius:25px;
+  text-align:center;
+  line-height:45px;
+}
+#a_button > a:hover{
+  color:#EC3611;
+  background-color:#fff;
+  border:1px solid#EC3611;
+}
+
+/*컨텐츠 5*/
+#cont5 > article{
+  position:relative;
+  display:block;
+}
+#cont5 > img{
+  position:absolute;
+  display: block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.circle{
+  position:absolute;
+  display:flex;
+  width:800px;height:350px;
+  top:30%;
+  align-items:center;
+  gap:50px;
+}
+.circle > div{
+  position:absolute;
+  display:inline-block;
+  width:350px;height:350px;
+  background-color: #fff;
+  border: 0.3px solid #ccc;
+  border-radius:50%;
+  margin-right:50px;
+  transition: transform 1s ease;
+  text-align:center;
+}
+/* career03은 따로 배경컬러 서식 */
+#career03{
+  width:350px;height:350px;
+  background-color: #EC3611;
+}
+
+/* career박스 안 텍스트서식 */
+#career01 > p{
+  font-size:25px;
+  color:#666;
+  transform:translateY(160px);
+}
+#career02 > p{
+  color:#666;
+  font-size:25px;
+  transform:translateY(160px);
+}
+#career03 > p{
+  font-size:25px;
+  transform:translateY(160px);
+}
+
+/* 마우시 오버시 */
+#career01:hover, #career02:hover{
+  background-color:#EC3611;
+  transition:0.5s;
+  border:none;
+}
+#career01:hover > p, #career02:hover > p{
+  color:#fff;
+}
+#career03:hover{
+  width:350px;height:350px;
+  background-color: #fff;
+  transition:0.5s;
+  color: #666;
+}
+/* 회전 하는 영역*/
+.box{
+  width:700px;height:700px;
+  position:relative;
+  transform:translate(130%,10%);
+  align-items:center;
+}
+.rect{
+  border:2px solid#000;
+  border-radius:50%;
+  width:400px;height:400px;
+  position: absolute;
+  left:140px;top:130px;
+  animation: ani2 20s infinite linear;
+}
+.icon{
+  width:150px;height:150px;
+  border-radius:50%;
+  text-align:center; line-height:100px;
+  position:absolute;
+  animation:ani3 20s infinite linear;
+  background-color:#333;
+}
+.icon1{ 
+  left:-25px;top:-25px;
+}
+.icon2{
+  right:-25px;top:-25px;
+}
+.icon3{ 
+  right:-25px;bottom:-25px;
+}
+.icon4{ 
+  left:-25px;bottom:-25px;
+}
+.icon > p{
+  display:block;
+  transform:translateY(-50%);
+  color:#ffffff;
+}
+.fa-regular{
+  font-size:200%;
+  color:#ffffff;
+}
+@keyframes ani1{
+  100%{transform:rotate(360deg);}
+}
+@keyframes ani2{
+  100%{transform:rotate(-360deg);}
+}
+@keyframes ani3{
+  100%{transform:rotate(360deg);}
+}
